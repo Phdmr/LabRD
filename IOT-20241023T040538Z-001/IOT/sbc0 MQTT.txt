@@ -1,0 +1,39 @@
+
+from gpio import *
+
+
+def publishTemperature():
+	value = (((analogRead(0) - 0) * (100.0 - - 100.00)) / (1023.0 - 0)) + -100.0 
+	topic = "Temperature"
+	payload= str("%.2f 'C"% (value,))
+	qos="1"
+	mqttclient.init()
+	mqttclient.init()
+	mqttclient.publish(topic, payload, qos)
+
+	CLI.exit()
+
+def publishHumidity():
+	value = analogRead(4)/10.0
+	topic = "Humidity"
+	payload= str("%.2f %"% (value,))
+	qos="1"
+	mqttclient.init()
+	mqttclient.init()
+	mqttclient.publish(topic, payload, qos)
+	CLI.exit()
+
+
+def autoConnecct():
+	brokerAdd = "192.168.1.253"
+	user	= "manusha"
+	password = "manusha"
+	mqttclient.init()
+	mqttclient.connect(brokerAdd, user, password)
+	CLI.exit()
+
+
+	pinMode(0, IN)
+	pinMode(4, IN)
+
+
